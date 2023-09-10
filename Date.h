@@ -1,10 +1,12 @@
 /*
     Esteban Sierra Baccio
     A00836286
+    10/09/2023
 */
 
-#include <iostream>     // Importamos la biblioteca iostream
-#include <string.h>     // Importamos la biblioteca string.h
+#include <iostream>     // "iostream" permite la interacción con la termimnal
+#include <string.h>     // "string.h" permite el uso de la clase *string*
+using namespace std;    // Automatiza el uso de "std::string"
 
 class Date{
     private:
@@ -16,12 +18,8 @@ class Date{
         int second;
         int millisecond;
     public:
-    /*
-        Constructores que asignan los siguientes valores en orden:
-        año, mes, dias, horas, minutos, segundos, milisegundos.
-        Todos los valores de entrada son enteros y no tienen salidas.
-        Se puede poner desde los 0 valores hasta los 7 en el mismo formato.
-    */
+
+    // Constructores
         Date(int years, int months, int days, int hours, int minutes, int seconds, int milliseconds){year = years;month = months;day = days;hour = hours;minute = minutes;second = seconds;millisecond = milliseconds;};
         Date(int years, int months, int days, int hours, int minutes, int seconds){year = years;month = months;day = days;hour = hours;minute = minutes;second = seconds;millisecond = 0;};
         Date(int years, int months, int days, int hours, int minutes){year = years;month = months;day = days;hour = hours;minute = minutes;second = 0;millisecond = 0;};
@@ -41,69 +39,26 @@ class Date{
         void setMillisecond(int num);   // Entrada: un número que obtendrá el valor del milisegundo. Salida: Null
 
     // Get Methods
-        int getYear();                  // Entrada: Null. Salida: Un entero que representa el año
-        int getMonth();                 // Entrada: Null. Salida: Un entero que representa el mes
-        int getDay();                   // Entrada: Null. Salida: Un entero que representa el dia
-        int getHour();                  // Entrada: Null. Salida: Un entero que representa la hora
-        int getMinute();                // Entrada: Null. Salida: Un entero que representa el minuto
-        int getSecond();                // Entrada: Null. Salida: Un entero que representa el segundo
-        int getMillisecond();           // Entrada: Null. Salida: Un entero que representa el milisegundo
-        std::string formatDate();       // Entrada: Null. Salida: Un string que representa la fecha en el siguiente formato: dd/mm/aaaa
-        std::string getTime();          // Entrada: Null. Salida: Un string que representa la hora en el siguiente formato hh:mm:ss
-        std::string toString();         // Entrada: Null. Salida: Un entero que representa la fecha entera
+        int getYear();                          // Entrada: Null. Salida: Un entero que representa el año
+        int getMonth();                         // Entrada: Null. Salida: Un entero que representa el mes
+        int getDay();                           // Entrada: Null. Salida: Un entero que representa el dia
+        int getHour();                          // Entrada: Null. Salida: Un entero que representa la hora
+        int getMinute();                        // Entrada: Null. Salida: Un entero que representa el minuto
+        int getSecond();                        // Entrada: Null. Salida: Un entero que representa el segundo
+        int getMillisecond();                   // Entrada: Null. Salida: Un entero que representa el milisegundo
+        std::string formatDate();               // Entrada: Null. Salida: Un string que representa la fecha en el siguiente formato: dd/mm/aaaa
+        std::string getTime();                  // Entrada: Null. Salida: Un string que representa la hora en el siguiente formato hh:mm:ss
+        std::string toString();                 // Entrada: Null. Salida: Un entero que representa la fecha entera
         std::string formatNumber(int value);    // Entrada: un número entero.  Salida: un string que representa el número dado en formato Date
+        int getMonthAsNumber(string value);     // Entrada: un string. Salida: Un número que representa el valor.
 
     // Sobrecarga de operadores
-
-        bool operator > (const Date& b) const{
-            if(this->year != b.year)
-                return this->year > b.year;
-            else if(this -> month != b.month)
-                return this->month > b.month;
-            else if(this -> day != b.day)
-                return this -> day > b.day;
-            else if(this -> hour != b.hour)
-                return this -> hour > b.hour;
-            else if(this -> minute != b.minute)
-                return this -> minute > b.minute;
-            else if(this -> second != b.second)
-                return this -> second > b.second;
-            else if(this -> millisecond != b.millisecond)
-                return this -> millisecond > b.millisecond;
-            else return false;
-        }
-
-        bool operator < (const Date& b) const{
-            if(this->year != b.year)
-                return this->year < b.year;
-            else if(this -> month != b.month)
-                return this->month < b.month;
-            else if(this -> day != b.day)
-                return this -> day < b.day;
-            else if(this -> hour != b.hour)
-                return this -> hour < b.hour;
-            else if(this -> minute != b.minute)
-                return this -> minute < b.minute;
-            else if(this -> second != b.second)
-                return this -> second < b.second;
-            else if(this -> millisecond != b.millisecond)
-                return this -> millisecond < b.millisecond;
-            else return false;
-        }
-
-        Date operator + (const Date& b) const{
-            int newYear = this->year + b.year;
-            int newMonth = this->month + b.month;
-            int newDay = this->day + b.day;
-            int newHour = this->hour + b.hour;
-            std::cout << hour << std::endl;
-            int newMinute = this->minute + b.minute;
-            int newSecond = this->second + b.second;
-            int newMillisecond = this->millisecond + b.millisecond;
-            return Date(newYear, newMonth, newDay, newHour, newMinute, newSecond, newMillisecond);
-
-        }
+        bool operator > (const Date& b);
+        bool operator < (const Date& b);
+        Date operator + (const Date& b);
 };
+
+// Setters
 
 void Date::setYear(int num){year = num;};
 void Date::setMonth(int num){month = num;};
@@ -113,6 +68,8 @@ void Date::setMinute(int num){minute = num;};
 void Date::setSecond(int num){second = num;};
 void Date::setMillisecond(int num){millisecond = num;};
 
+// Getters
+
 int Date::getYear(){return year;};
 int Date::getMonth(){return month;};
 int Date::getDay(){return day;};
@@ -121,6 +78,7 @@ int Date::getMinute(){return minute;};
 int Date::getSecond(){return second;};
 int Date::getMillisecond(){return millisecond;};
 
+// Devuelve el tiempo en formato: hh:mm:ss
 std::string Date::getTime(){
 
     std::string horaStr = formatNumber(hour);
@@ -130,21 +88,72 @@ std::string Date::getTime(){
     return horaStr + ":" + minuStr + ":" + seguStr;
 };
 
-std::string Date::formatDate(){
+// Devuelve el la fecha en formato: dd/mm/aaaa
+std::string Date::getDate(){
     std::string yearStr = formatNumber(year);
-    std::string monthStr = formatNumber(month);
+    std::string monthStr = formatNumber(month + 1);
     std::string dayStr = formatNumber(day);
 
     return dayStr + "/" + monthStr + "/" + yearStr;
 };
 
+// Devuelve la fecha en formato: hh:mm:ss dd/mm/aaaa
 std::string Date::toString(){
-    return formatDate() + " " + getTime();
+    return getDate() + " " + getTime();
 };
 
+// Devuelve un valor numérico con dos dígitos
 std::string Date::formatNumber(int number){
     std::string valueStr;
     number<10 ? valueStr = "0" + std::to_string(number) : valueStr = std::to_string(number);
     return valueStr;
 }
 
+// SOBRECARGA DE OPERADORES
+
+Date Date::operator + (const Date& b) {
+    int newYear = this->year + b.year;
+    int newMonth = this->month + b.month;
+    int newDay = this->day + b.day;
+    int newHour = this->hour + b.hour;
+    int newMinute = this->minute + b.minute;
+    int newSecond = this->second + b.second;
+    int newMillisecond = this->millisecond + b.millisecond;
+    return Date(newYear, newMonth, newDay, newHour, newMinute, newSecond, newMillisecond);
+}
+
+bool Date::operator < (const Date& b){
+    if(this->year != b.year)
+        return this->year < b.year;
+    else if(this -> month != b.month)
+        return this->month < b.month;
+    else if(this -> day != b.day)
+        return this -> day < b.day;
+    else if(this -> hour != b.hour)
+        return this -> hour < b.hour;
+    else if(this -> minute != b.minute)
+        return this -> minute < b.minute;
+    else if(this -> second != b.second)
+        return this -> second < b.second;
+    else if(this -> millisecond != b.millisecond)
+        return this -> millisecond < b.millisecond;
+    else return false;
+}
+
+bool Date::operator > (const Date& b){
+    if(this->year != b.year)
+        return this->year > b.year;
+    else if(this -> month != b.month)
+        return this->month > b.month;
+    else if(this -> day != b.day)
+        return this -> day > b.day;
+    else if(this -> hour != b.hour)
+        return this -> hour > b.hour;
+    else if(this -> minute != b.minute)
+        return this -> minute > b.minute;
+    else if(this -> second != b.second)
+        return this -> second > b.second;
+    else if(this -> millisecond != b.millisecond)
+        return this -> millisecond > b.millisecond;
+    else return false;
+}
